@@ -46,6 +46,7 @@ module.exports = {
       config.output.library = {};
       config.output.filename = "index.js";
       config.output.library.type = "umd";
+      config.output.clean = true;
 
       config.externals = {
         react: {
