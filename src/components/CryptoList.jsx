@@ -1,4 +1,7 @@
+import React from "react";
 import useCryptoData from "../hooks/useCryptoData";
+
+import "../index.css";
 
 const CryptoItem = (props) => (
   <div className="item">
@@ -35,6 +38,7 @@ const CryptoList = () => {
       </div>
     </div>
   );
+  // return <div>Hello</div>
 };
 
 export default CryptoList;

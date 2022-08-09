@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useCryptoData = () => {
+  console.log("inside hook");
   const [cryptoData, setCryptoData] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
