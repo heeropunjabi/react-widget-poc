@@ -15,8 +15,8 @@
   },
   "scripts": {
     "start": "REACT_APP_TYPE=widget craco start",
-    "build:widget": "REACT_APP_TYPE=widget craco build",
-    "build:lib": "REACT_APP_TYPE=lib GENERATE_SOURCEMAP=false  craco build && rm -rf lib/asset-manifest.json lib/index.html",
+    "build:widget": "cross-env NODE_ENV=production REACT_APP_TYPE=widget GENERATE_SOURCEMAP=false  craco build && rm -rf widget/asset-manifest.json widget/index.html",
+    "build:lib": "cross-env NODE_ENV=production REACT_APP_TYPE=lib GENERATE_SOURCEMAP=false  craco build && rm -rf lib/asset-manifest.json lib/index.html",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.18.6",
+    "cross-env": "^7.0.3",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-external-react": "^1.1.52",
     "webpack-node-externals": "^3.0.0",

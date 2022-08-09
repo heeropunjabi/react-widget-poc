@@ -3,6 +3,13 @@ const WebpackBar = require("webpackbar");
 
 const path = require("path");
 
+console.log(process.env.NODE_ENV);
+console.log(process.env.REACT_APP_TYPE, "REACT_APP_TYPE");
+
+if (process.env.NODE_ENV === "development") {
+  return;
+}
+
 // refernce: https://github.com/dilanx/craco/blob/master/packages/craco/README.md#configuration-file
 
 module.exports = {
@@ -20,7 +27,11 @@ module.exports = {
     ],
 
     configure: (config, { paths }) => {
-      paths.appBuild = config.output.path = path.resolve("lib");
+      if (process.env.REACT_APP_TYPE === "lib") {
+        paths.appBuild = config.output.path = path.resolve("lib");
+      } else {
+        paths.appBuild = config.output.path = path.resolve("widget");
+      }
 
       // https://webpack.js.org/plugins/split-chunks-plugin
       config.optimization.splitChunks = {
@@ -47,25 +58,30 @@ module.exports = {
       config.output.filename = "index.js";
       config.output.library.type = "umd";
       config.output.clean = true;
+      if (process.env.REACT_APP_TYPE === "lib") {
+        config.externals = {
+          react: {
+            commonjs: "react",
+            commonjs2: "react",
+            amd: "react",
+            root: "React",
+            module: "react",
+          },
+          "react-dom": {
+            commonjs: "react-dom",
+            commonjs2: "react-dom",
+            amd: "react-dom",
+            root: "ReactDOM",
+            module: "react-dom",
+          },
+        };
+      }
 
-      config.externals = {
-        react: {
-          commonjs: "react",
-          commonjs2: "react",
-          amd: "react",
-          root: "React",
-          module: "react",
-        },
-        "react-dom": {
-          commonjs: "react-dom",
-          commonjs2: "react-dom",
-          amd: "react-dom",
-          root: "ReactDOM",
-          module: "react-dom",
-        },
-      };
-
-      config.entry = path.resolve(__dirname, `./src/components/index.js`);
+      if (process.env.REACT_APP_TYPE === "lib") {
+        config.entry = path.resolve(__dirname, `./src/components/index.js`);
+      } else {
+        config.entry = path.resolve(__dirname, `./src/index.js`);
+      }
 
       return config;
     },

@@ -1,10 +1,10 @@
 //import CryptoList from "./components/CryptoList";
 
-import Demo from "./components";
+import { CryptoList } from "./components";
 export default function App() {
   return (
     <div>
-      <Demo />
+      <CryptoList />
     </div>
   );
 }
