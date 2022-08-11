@@ -6,6 +6,22 @@ const path = require("path");
 console.log(process.env.NODE_ENV);
 console.log(process.env.REACT_APP_TYPE, "REACT_APP_TYPE");
 
+// when you want to run bundle analyser tool
+// module.exports = {
+//   // style: {
+//   //   postcss: {
+//   //     plugins: [require("tailwindcss"), require("autoprefixer")],
+//   //   },
+//   // },
+//   webpack: {
+//     plugins: [
+//       new WebpackBar({ profile: true }),
+//       ...(process.env.NODE_ENV === "development"
+//         ? [new BundleAnalyzerPlugin({ openAnalyzer: false })]
+//         : []),
+//     ],
+//   },
+// };
 if (process.env.NODE_ENV === "development") {
   return;
 }
@@ -19,12 +35,7 @@ module.exports = {
   //   },
   // },
   webpack: {
-    plugins: [
-      new WebpackBar({ profile: true }),
-      ...(process.env.NODE_ENV === "development"
-        ? [new BundleAnalyzerPlugin({ openAnalyzer: false })]
-        : []),
-    ],
+    plugins: [new WebpackBar({ profile: true })],
 
     configure: (config, { paths }) => {
       if (process.env.REACT_APP_TYPE === "lib") {
@@ -42,7 +53,7 @@ module.exports = {
       // https://webpack.js.org/configuration/optimization
       config.optimization.runtimeChunk = false;
 
-      config.optimization.minimize = false;
+      config.optimization.minimize = true;
 
       // CSS
       // https://webpack.js.org/plugins/mini-css-extract-plugin

@@ -2,19 +2,32 @@ import ReactDOM from "react-dom/client";
 import React from "react";
 
 import App from "./App";
+
 //import reportWebVitals from "./reportWebVitals";
 
-//import "./index.css";
+import "./index.css";
 
-const widgetDivs = document.querySelectorAll(".react-widget-poc");
+function init(config) {
+  console.log("<<----config------------------------>>>>>", config);
 
-widgetDivs.forEach((div) => {
-  ReactDOM.createRoot(div).render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
-});
+  //const widgetDivs = document.querySelectorAll(".react-widget-poc");
+  const widgetDivs = document.querySelectorAll(config.selector);
+
+  widgetDivs.forEach((div) => {
+    ReactDOM.createRoot(div).render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    );
+  });
+}
+if (process.env.NODE_ENV === "development") {
+  init({ selector: ".react-widget-poc" });
+} else {
+  window.widget = {
+    init: init,
+  };
+}
 
 // const root = ReactDOM.createRoot(document.getElementById("root"));
 // root.render(
