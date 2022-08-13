@@ -1,0 +1,39 @@
+#w1 {
+  --block-level-font: "Open Sans", sans-serif;
+  --font-size-base: 14px;
+  @import "~antd/dist/antd.variable.less";
+
+  @import "./theme.less";
+
+  //@font-size-base: var(--font-size) ;
+
+  @import "~antd/dist/antd.less";
+
+  .debug(@var) {
+    &:after {
+      content: "@{var}";
+      font-size: 20px;
+      background-color: #fff;
+      border: 1px solid red;
+      padding: 10px;
+      border-radius: 5px;
+      color: red;
+      font-weight: bold;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+  }
+
+  .debug(@font-family);
+  .debug(@code-family);
+
+  font-family: var(--block-level-font);
+  font-size: var(--font-size-base);
+
+  //--font-size: 24px;
+  //@font-size-base: var(--font-size) !important;
+
+  //font-family: "Lucida Console", "Courier New", monospace !important;
+  //font-family: var(--font-name);
+}

@@ -4,24 +4,17 @@
 
 import Button from "antd/lib/button";
 import Steps from "antd/lib/steps";
-//import "antd/dist/antd.min.css";
-import "antd/dist/antd.variable.min.css";
+
 import ConfigProvider from "antd/lib/config-provider";
-import { useEffect } from "react";
+// import { useEffect } from "react";
+
+import "./App.less";
 
 const { Step } = Steps;
 
 export default function App() {
-  useEffect(() => {
-    ConfigProvider.config({
-      theme: {
-        primaryColor: "#8875FF",
-        textColor: "#8875FF",
-      },
-    });
-  });
   return (
-    <>
+    <ConfigProvider>
       <div className='flex'>
         <div>
           <Button
@@ -50,6 +43,6 @@ export default function App() {
         />
         <Step title='Waiting' description='This is a description.' />
       </Steps>
-    </>
+    </ConfigProvider>
   );
 }

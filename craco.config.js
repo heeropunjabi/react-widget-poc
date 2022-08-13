@@ -6,6 +6,24 @@ const path = require("path");
 console.log(process.env.NODE_ENV);
 console.log(process.env.REACT_APP_TYPE, "REACT_APP_TYPE");
 
+const CracoLessPlugin = require("craco-less");
+
+module.exports = {
+  plugins: [
+    {
+      plugin: CracoLessPlugin,
+      options: {
+        lessLoaderOptions: {
+          lessOptions: {
+            // modifyVars: { "@primary-color": "#1DA57A" },
+            javascriptEnabled: true,
+          },
+        },
+      },
+    },
+  ],
+};
+
 // when you want to run bundle analyser tool
 // module.exports = {
 //   // style: {
