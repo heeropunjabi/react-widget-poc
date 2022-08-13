@@ -52,6 +52,19 @@ module.exports = {
   //     plugins: [require("tailwindcss"), require("autoprefixer")],
   //   },
   // },
+  plugins: [
+    {
+      plugin: CracoLessPlugin,
+      options: {
+        lessLoaderOptions: {
+          lessOptions: {
+            // modifyVars: { "@primary-color": "#1DA57A" },
+            javascriptEnabled: true,
+          },
+        },
+      },
+    },
+  ],
   webpack: {
     plugins: [new WebpackBar({ profile: true })],
 

@@ -10,6 +10,7 @@ module.exports = {
   theme: {
     extend: {},
   },
+  important: "#w1",
   plugins: [],
   corePlugins: {
     preflight: false, // <== disable this!
